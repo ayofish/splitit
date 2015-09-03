@@ -14,7 +14,13 @@ angular.module('billsplitApp')
       'AngularJS',
       'Karma'
     ];
-    var items = [new Item("test", "desc", 0), new DiscountItem("test1", "desc1", 1), new Item("test2", "desc2", 1), new Item("test3", "desc3", 1), new TaxItem("test4", "desc4", 1)];
+    var items = [
+    	new Item("test", "desc", 0), 
+    	new DiscountItem("test1", "desc1", 1), 
+    	new Item("test2", "desc2", 1), 
+    	new Item("test3", "desc3", 1), 
+    	new TaxItem("test4", "desc4", 1)
+    ];
   	
     bill.addItems(items);
 
