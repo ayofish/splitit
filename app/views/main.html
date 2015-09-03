@@ -1,0 +1,18 @@
+<h2>items</h2>
+<div class="row" ng-repeat="item in items">
+    {{item.getId()}} {{item.getType()}} {{item.name}} {{item.description}} {{item.getPrice()}}
+</div>
+<p>subtotal: {{subtotal}}</p>
+<h2>less discount</h2>
+<div class="row" ng-repeat="discountItem in discountItems">
+    {{discountItem.getId()}} {{discountItem.getType()}} {{discountItem.name}} {{discountItem.description}} {{discountItem.getPrice()}}
+</div>
+<h2>add tax</h2>
+<div class="row" ng-repeat="taxItem in taxItems">
+    {{taxItem.getId()}} {{taxItem.getType()}} {{taxItem.name}} {{taxItem.description}} {{taxItem.getPrice()}}
+</div>
+<br>
+<p>subtotal: {{subtotal}}</p>
+<p>tax total: {{taxTotal}}</p>
+<p>discount total: ({{discountTotal}})</p>
+<p>total: {{total}}</p>
