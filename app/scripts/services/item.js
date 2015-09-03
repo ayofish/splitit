@@ -23,9 +23,8 @@ angular.module('billsplitApp')
             name: "",
             description: "",
             price: 0,
-            init: function(name, description, price, id) {
-
-                this.setId(id);
+            init: function(name, description, price) {
+                this.setId();
                 this.setName(name);
                 this.setDescription(description);
                 this.setPrice(price);
