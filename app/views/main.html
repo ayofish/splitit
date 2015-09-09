@@ -1,3 +1,4 @@
+<h1>{{billName}} {{billDate}}</h1>
 <h2>items</h2>
 <div class="row" ng-repeat="item in items">
     {{item.getId()}} {{item.getType()}} {{item.name}} {{item.description}} {{item.getPrice()}}
@@ -16,4 +17,21 @@
 <p>tax total: {{taxTotal}}</p>
 <p>discount total: ({{discountTotal}})</p>
 <p>total: {{total}}</p>
-<itemform/>
+
+<br/>
+<h1>Split Info</h1>
+<h3>equal split</h3>
+<ul>
+	<li ng-repeat="splitInfo in splitData">
+		{{splitInfo.person.getName()}} -- {{splitInfo.share}}
+	</li>
+</ul>
+
+<br/>
+<h1>Split Info</h1>
+<h3>by item split</h3>
+<ul>
+	<li ng-repeat="splitInfo in splitData">
+		{{splitInfo.person.getName()}} -- {{splitInfo.share}}
+	</li>
+</ul>

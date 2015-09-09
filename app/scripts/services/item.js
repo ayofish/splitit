@@ -13,7 +13,7 @@ angular.module('billsplitApp')
         // ...
 
         var Item = function() {
-          this.setType("Item");
+            this.setType("Item");
             this.init.apply(this, arguments);
         };
 
@@ -53,7 +53,6 @@ angular.module('billsplitApp')
                 } else {
                     this.id = uuid();
                 }
-
             },
             setName: function(name) {
                 if (typeof name != 'undefined' && name != null) {
