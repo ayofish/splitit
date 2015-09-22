@@ -28,14 +28,25 @@ angular.module('billsplitApp')
                 new DiscountItem("dc item 1", "dc", 1),
                 new TaxItem("tax item 1", "tax", 1)
             ];
-            person1.addItem(items[0]);
-            person1.addItem(items[1]);
             
-            person2.addItem(items[2]);
-            person3.addItem(items[3]);
 
             var bill = new BillTransaction("test bill", new Date());
             bill.addItems(items);
+            
+
+            var billSplit = new BillSplitter(bill);
+            billSplit.addPerson(person1);
+            billSplit.addPerson(person2);
+            billSplit.addPerson(person3);
+            billSplit.addPerson(person4);
+
+            //add items to split on
+
+            billSplit.addItemShare(items[0].getId(), person1.getId());
+            billSplit.addItemShare(items[1].getId(), person2.getId());
+            
+            billSplit.addItemShare(items[2].getId(), person3.getId());
+            billSplit.addItemShare(items[3].getId(), person4.getId());
             $scope.billName = bill.getName();
             $scope.billDate = bill.getDate().toString();
             $scope.items = bill.getSubTotalItemsArr();
@@ -46,11 +57,6 @@ angular.module('billsplitApp')
             $scope.discountItems = bill.getDiscountItemsArr();
             $scope.taxItems = bill.getTaxItemsArr();
 
-            var billSplit = new BillSplitter(bill);
-            billSplit.addPerson(person1);
-            billSplit.addPerson(person2);
-            billSplit.addPerson(person3);
-            billSplit.addPerson(person4);
             $scope.splitData = billSplit.getEqualSplit();
             $scope.splitDataByItem = billSplit.getByItemSplit();
 

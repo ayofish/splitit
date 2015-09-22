@@ -12,6 +12,9 @@ angular.module('billsplitApp')
         // Service logic
         // ...
         var TaxItem = function() {
+            this.name = "";
+            this.description = "";
+            this.price = 0;
             this.setType("TaxItem");
             this.init.apply(this, arguments);
         };

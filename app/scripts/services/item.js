@@ -13,6 +13,9 @@ angular.module('billsplitApp')
         // ...
 
         var Item = function() {
+            this.name = "";
+            this.description = "";
+            this.price = 0;
             this.setType("Item");
             this.init.apply(this, arguments);
         };
@@ -20,9 +23,9 @@ angular.module('billsplitApp')
         Item.prototype = {
             type: null,
             id: null,
-            name: "",
-            description: "",
-            price: 0,
+            name: null,
+            description: null,
+            price: null,
             init: function(name, description, price) {
                 this.setId();
                 this.setName(name);

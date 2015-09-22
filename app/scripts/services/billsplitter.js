@@ -15,13 +15,17 @@ angular.module('billsplitApp')
             // ...
 
             var BillSplitter = function() {
+                this.itemsShare = {};
+                this.persons = {};
+
                 this.init.apply(this, arguments);
             };
 
             BillSplitter.prototype = {
                 id: null,
                 bill: null,
-                persons: {},
+                persons: null,
+                itemsShare: null,
                 init: function(bill) {
                     this.setId();
                     this.setBill(bill);
@@ -73,7 +77,29 @@ angular.module('billsplitApp')
                         delete this.persons[personId];
                     }
                 },
+                addItemShare: function(itemId, personId) {
+                    if (this.getItemsShare(itemId) === null) {
+                        this.itemsShare[itemId] = {
+                            persons: []
+                        };
+                    }
 
+                },
+                removeItemShare: function(itemId) {
+                    if (this.getItem(itemId) !== null) {
+                        delete this.items[itemId];
+                    }
+                },
+                getItemShare: function(itemId) {
+                    if (typeof itemId !== 'undefined' && itemId !== null) {
+                        return this.itemsShare[itemId];
+                    } else {
+                        return null;
+                    }
+                },
+                getItemsShare: function() {
+                    return this.itemsShare;
+                },
                 getEqualSplit: function() {
                     var splitData = [];
                     var bill = this.getBill();
@@ -91,6 +117,11 @@ angular.module('billsplitApp')
 
                 getByItemSplit: function() {
                     var splitData = [];
+                    var bill = this.getBill();
+                    var itemsData = this.getItemsShare();
+                    for (var itemData in itemsData) {
+
+                    }
                     return splitData;
                 }
 

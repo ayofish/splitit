@@ -13,13 +13,16 @@ angular.module('billsplitApp')
         // ...
 
         var BillTransaction = function() {
+            this.name = "";
+            this.date = null;
+            this.items = {};
             this.init.apply(this, arguments);
         };
 
         BillTransaction.prototype = {
-            name: "",
+            name: null,
             date: null,
-            items: {},
+            items: null,
             init: function(name, date) {
                 this.setId();
                 this.setName(name);
@@ -36,7 +39,7 @@ angular.module('billsplitApp')
             },
 
             setId: function(id) {
-                if (typeof id !== 'undefined' && id !== null && id != "") {
+                if (typeof id !== 'undefined' && id !== null && id !== "") {
                     this.id = id;
                 } else {
                     this.id = uuid();

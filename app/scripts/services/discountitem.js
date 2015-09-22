@@ -12,7 +12,10 @@ angular.module('billsplitApp')
         // Service logic
         // ...
         var DiscountItem = function() {
-          this.setType("DiscountItem");
+            this.name = "";
+            this.description = "";
+            this.price = 0;
+            this.setType("DiscountItem");
             this.init.apply(this, arguments);
         };
         //inherit from item
