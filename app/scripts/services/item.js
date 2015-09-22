@@ -48,24 +48,24 @@ angular.module('billsplitApp')
                 this.type = type;
             },
             setId: function(id) {
-                if (typeof id != 'undefined' && id != null && id != "") {
+                if (typeof id !== 'undefined' && id !== null && id !== "") {
                     this.id = id;
                 } else {
                     this.id = uuid();
                 }
             },
             setName: function(name) {
-                if (typeof name != 'undefined' && name != null) {
+                if (typeof name !== 'undefined' && name !== null) {
                     this.name = name;
                 }
             },
             setDescription: function(description) {
-                if (typeof description != 'undefined' && description != null) {
+                if (typeof description !== 'undefined' && description !== null) {
                     this.description = description;
                 }
             },
             setPrice: function(price) {
-                if (typeof price != 'undefined' && price != null && !isNaN(price)) {
+                if (typeof price !== 'undefined' && price !== null && !isNaN(price)) {
                     this.price = price;
                 }
             }

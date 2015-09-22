@@ -36,21 +36,21 @@ angular.module('billsplitApp')
             },
 
             setId: function(id) {
-                if (typeof id != 'undefined' && id != null && id != "") {
+                if (typeof id !== 'undefined' && id !== null && id != "") {
                     this.id = id;
                 } else {
                     this.id = uuid();
                 }
             },
             setDate: function(date) {
-                if (typeof date != 'undefined' && date != null) {
+                if (typeof date !== 'undefined' && date !== null) {
                     this.date = date;
                 } else {
                     this.date = new Date();
                 }
             },
             setName: function(name) {
-                if (typeof name != 'undefined' && name != null) {
+                if (typeof name !== 'undefined' && name !== null) {
                     this.name = name;
                 }
             },
@@ -58,12 +58,12 @@ angular.module('billsplitApp')
                 this.items[item.getId()] = item;
             },
             removeItem: function(itemId) {
-                if (this.getItem(itemId) != null) {
+                if (this.getItem(itemId) !== null) {
                     delete this.items[itemId];
                 }
             },
             getItem: function(itemId) {
-                if (typeof itemId != 'undefined' && itemId != null) {
+                if (typeof itemId !== 'undefined' && itemId !== null) {
                     return this.items[itemId];
                 } else {
                     return null;
@@ -95,7 +95,7 @@ angular.module('billsplitApp')
                 var items = this.getItems();
                 for (var itemId in items) {
                     var item = items[itemId];
-                    if (item != null && item.getType() == "DiscountItem") {
+                    if (item !== null && item.getType() === "DiscountItem") {
                         discountItems.push(item);
                     }
                 }
@@ -107,7 +107,7 @@ angular.module('billsplitApp')
                 var items = this.getItems();
                 for (var itemId in items) {
                     var item = items[itemId];
-                    if (item != null && item.getType() == "TaxItem") {
+                    if (item !== null && item.getType() === "TaxItem") {
                         taxItems.push(item);
                     }
                 }
@@ -119,7 +119,7 @@ angular.module('billsplitApp')
                 var items = this.getItems();
                 for (var itemId in items) {
                     var item = items[itemId];
-                    if (item.getType() != "DiscountItem" && item.getType() != "TaxItem") {
+                    if (item.getType() !== "DiscountItem" && item.getType() !== "TaxItem") {
                         subTotalItemsArr.push(item);
                     }
                 }

@@ -22,7 +22,7 @@ angular.module('billsplitApp')
                 this.setName(name);
             },
             setId: function(id) {
-                if (typeof id != 'undefined' && id != null && id != "") {
+                if (typeof id !== 'undefined' && id !== null && id !== "") {
                     this.id = id;
                 } else {
                     this.id = uuid();
@@ -36,7 +36,7 @@ angular.module('billsplitApp')
                 return this.name;
             },
             setName: function(name) {
-                if (typeof name != 'undefined' && name != null) {
+                if (typeof name !== 'undefined' && name !== null) {
                     this.name = name;
                 }
             },
@@ -44,12 +44,12 @@ angular.module('billsplitApp')
                 this.items[item.getId()] = item;
             },
             removeItem: function(itemId) {
-                if (this.getItem(itemId) != null) {
+                if (this.getItem(itemId) !== null) {
                     delete this.items[itemId];
                 }
             },
             getItem: function(itemId) {
-                if (typeof itemId != 'undefined' && itemId != null) {
+                if (typeof itemId !== 'undefined' && itemId !== null) {
                     return this.items[itemId];
                 } else {
                     return null;

@@ -52,6 +52,7 @@ angular.module('billsplitApp')
             billSplit.addPerson(person3);
             billSplit.addPerson(person4);
             $scope.splitData = billSplit.getEqualSplit();
+            $scope.splitDataByItem = billSplit.getByItemSplit();
 
         }
     ]);

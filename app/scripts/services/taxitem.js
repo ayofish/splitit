@@ -26,7 +26,7 @@ angular.module('billsplitApp')
         };
 
         TaxItem.prototype.setPrice = function(price) {
-            if (typeof price != 'undefined' && price != null && !isNaN(price)) {
+            if (typeof price !== 'undefined' && price !== null && !isNaN(price)) {
                 this.price = price;
             }
         };

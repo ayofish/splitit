@@ -30,7 +30,7 @@ angular.module('billsplitApp')
                     return this.id;
                 },
                 setId: function(id) {
-                    if (typeof id != 'undefined' && id != null && id != "") {
+                    if (typeof id !== 'undefined' && id !== null && id !== "") {
                         this.id = id;
                     } else {
                         this.id = uuid();
@@ -42,7 +42,7 @@ angular.module('billsplitApp')
                 },
 
                 setBill: function(bill) {
-                    if (typeof bill != 'undefined' && bill != null) {
+                    if (typeof bill !== 'undefined' && bill !== null) {
                         this.bill = bill;
                     }
                 },
@@ -54,7 +54,7 @@ angular.module('billsplitApp')
                     this.persons[person.getId()] = person;
                 },
                 getPerson: function(personId) {
-                    if (typeof this.persons[personId] != 'undefined' && this.persons[personId] != null) {
+                    if (typeof this.persons[personId] !== 'undefined' && this.persons[personId] !== null) {
                         return this.persons[personId];
                     } else {
                         return null;
@@ -69,7 +69,7 @@ angular.module('billsplitApp')
                     return personsArr;
                 },
                 removePerson: function(personId) {
-                    if (this.getPerson(personId) != null) {
+                    if (this.getPerson(personId) !== null) {
                         delete this.persons[personId];
                     }
                 },
@@ -87,7 +87,13 @@ angular.module('billsplitApp')
                         });
                     }
                     return splitData;
+                },
+
+                getByItemSplit: function() {
+                    var splitData = [];
+                    return splitData;
                 }
+
             };
 
             // Public API here
