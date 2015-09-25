@@ -12,10 +12,15 @@
 <div class="row" ng-repeat="taxItem in taxItems">
     {{taxItem.getId()}} {{taxItem.getType()}} {{taxItem.name}} {{taxItem.description}} {{taxItem.getPrice()}}
 </div>
+<h2>add charges</h2>
+<div class="row" ng-repeat="chargeItem in chargeItems">
+    {{chargeItem.getId()}} {{chargeItem.getType()}} {{chargeItem.name}} {{chargeItem.description}} {{chargeItem.getPrice()}}
+</div>
 <br>
 <p>subtotal: {{subtotal}}</p>
 <p>tax total: {{taxTotal}}</p>
-<p>discount total: ({{discountTotal}})</p>
+<p>charges total: {{chargeTotal}}</p>
+<p>less discount total: ({{discountTotal}})</p>
 <p>total: {{total}}</p>
 
 <br/>
@@ -32,6 +37,12 @@
 <h3>by item split</h3>
 <ul>
 	<li ng-repeat="splitInfo in splitDataByItem">
-		{{splitInfo.person.getName()}} -- {{splitInfo.share}}
+		<p>{{splitInfo.person.getName()}} -- items</p>
+        <ol>
+            <li ng-repeat="splitInfoItem in splitInfo.items">
+                {{splitInfoItem.name}} : {{splitInfoItem.sharePrice}}
+            </li>
+        </ol>
+        <p>total share: {{splitInfo.share.toFixed(2)}} </p>
 	</li>
 </ul>

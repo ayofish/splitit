@@ -117,12 +117,24 @@ angular.module('billsplitApp')
                 return taxItems;
             },
 
+            getChargeItemsArr: function() {
+                var chargeItems = [];
+                var items = this.getItems();
+                for (var itemId in items) {
+                    var item = items[itemId];
+                    if (item !== null && item.getType() === "ChargeItem") {
+                        chargeItems.push(item);
+                    }
+                }
+                return chargeItems;
+            },
+
             getSubTotalItemsArr: function() {
                 var subTotalItemsArr = [];
                 var items = this.getItems();
                 for (var itemId in items) {
                     var item = items[itemId];
-                    if (item.getType() !== "DiscountItem" && item.getType() !== "TaxItem") {
+                    if (item.getType() !== "DiscountItem" && item.getType() !== "TaxItem" && item.getType() !== "ChargeItem") {
                         subTotalItemsArr.push(item);
                     }
                 }
@@ -159,6 +171,15 @@ angular.module('billsplitApp')
             getTotalTax: function() {
                 var total = 0.00;
                 var items = this.getTaxItemsArr();
+                for (var i = 0; i < items.length; i++) {
+                    total = total + items[i].getPrice();
+                }
+                return total;
+            },
+
+            getTotalCharges: function() {
+                var total = 0.00;
+                var items = this.getChargeItemsArr();
                 for (var i = 0; i < items.length; i++) {
                     total = total + items[i].getPrice();
                 }

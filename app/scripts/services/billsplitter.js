@@ -78,20 +78,23 @@ angular.module('billsplitApp')
                     }
                 },
                 addItemShare: function(itemId, personId) {
-                    if (this.getItemsShare(itemId) === null) {
+                    if (this.getItemShare(itemId) === null) {
                         this.itemsShare[itemId] = {
-                            persons: []
+                            shares: []
                         };
                     }
-
+                    this.itemsShare[itemId].shares.push({
+                        personId: personId,
+                        amount: 0
+                    });
                 },
                 removeItemShare: function(itemId) {
-                    if (this.getItem(itemId) !== null) {
-                        delete this.items[itemId];
+                    if (this.getItemShare(itemId) !== null) {
+                        delete this.itemsShare[itemId];
                     }
                 },
                 getItemShare: function(itemId) {
-                    if (typeof itemId !== 'undefined' && itemId !== null) {
+                    if (typeof itemId !== 'undefined' && itemId !== null && typeof this.itemsShare[itemId] !== 'undefined') {
                         return this.itemsShare[itemId];
                     } else {
                         return null;
@@ -114,17 +117,72 @@ angular.module('billsplitApp')
                     }
                     return splitData;
                 },
-
+                setShareForCharges: function() {
+                    var bill = this.getBill();
+                    var persons = this.getPersonsArr();
+                    var chargeItems = bill.getChargeItemsArr();
+                    for (var i = 0; i < persons.length; i++) {
+                        for (var x = 0; x < chargeItems.length; x++) {
+                            this.addItemShare(chargeItems[x].getId(), persons[i].getId());
+                        }
+                    }
+                },
+                setShareForTaxes: function() {
+                    var bill = this.getBill();
+                    var persons = this.getPersonsArr();
+                    var taxItems = bill.getTaxItemsArr();
+                    for (var i = 0; i < persons.length; i++) {
+                        for (var x = 0; x < taxItems.length; x++) {
+                            this.addItemShare(taxItems[x].getId(), persons[i].getId());
+                        }
+                    }
+                },
+                setShareForDiscounts: function() {
+                    var bill = this.getBill();
+                    var persons = this.getPersonsArr();
+                    var discountItems = bill.getDiscountItemsArr();
+                    for (var i = 0; i < persons.length; i++) {
+                        for (var x = 0; x < discountItems.length; x++) {
+                            this.addItemShare(discountItems[x].getId(), persons[i].getId());
+                        }
+                    }
+                },
                 getByItemSplit: function() {
+                    this.setShareForCharges();
+                    this.setShareForTaxes();
+                    this.setShareForDiscounts();
                     var splitData = [];
                     var bill = this.getBill();
-                    var itemsData = this.getItemsShare();
-                    for (var itemData in itemsData) {
-
+                    var itemsShare = this.getItemsShare();
+                    var oSplitInfo = {};
+                    for (var itemId in itemsShare) {
+                        var shares = this.getItemShare(itemId).shares;
+                        var item = bill.getItem(itemId);
+                        var sharePrice = item.getPrice() / shares.length;
+                        for (var i = 0; i < shares.length; i++) {
+                            var share = shares[i];
+                            var person = this.getPerson(share.personId);
+                            if (typeof oSplitInfo[person.getId()] === "undefined") {
+                                oSplitInfo[person.getId()] = {
+                                    person: person,
+                                    share: 0,
+                                    items: []
+                                };
+                            }
+                            item.sharePrice = sharePrice;
+                            oSplitInfo[person.getId()].items.push(item);
+                            oSplitInfo[person.getId()].share += sharePrice;
+                        }
+                    }
+                    for (var key in oSplitInfo) {
+                        splitData.push({
+                            person: oSplitInfo[key].person,
+                            share: oSplitInfo[key].share,
+                            items: oSplitInfo[key].items
+                        })
                     }
                     return splitData;
                 }
-
             };
 
             // Public API here
